@@ -1,0 +1,14 @@
+# Ignore everything
+*
+
+# Keep the .gitignore itself
+!.gitignore
+
+# Keep the README (common filename is README.md)
+!README.md
+
+# Keep the project folder and the specific C# file(s). Adjust names if your file is `Program.cs` or `Project.cs`.
+!ThreadingProject/
+!ThreadingProject/Program.cs
+
+# End
