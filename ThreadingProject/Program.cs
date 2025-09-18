@@ -75,13 +75,51 @@ class Program
 
     static void ThreadingWithPriorities()
     {
-        
+        // Takes a name and sentence, and prints it 5 times to show how thread priority affects the output
+        void PrintPriority(string name, int value)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"{name}: {value} (iteration {i + 1})");
+                Thread.Sleep(150); 
+            }
+        }
+
+        // Creating 5 new threads with different values
+        Thread t11 = new Thread(() => PrintPriority("Thread #11", 10));
+        Thread t12 = new Thread(() => PrintPriority("Thread #12", 20));
+        Thread t13 = new Thread(() => PrintPriority("Thread #13", 30));
+        Thread t14 = new Thread(() => PrintPriority("Thread #14", 40));
+        Thread t15 = new Thread(() => PrintPriority("Thread #15", 50));
+
+        // Set different priorities for each thread
+        t11.Priority = ThreadPriority.Highest;
+        t12.Priority = ThreadPriority.AboveNormal;
+        t13.Priority = ThreadPriority.Normal;
+        t14.Priority = ThreadPriority.BelowNormal;
+        t15.Priority = ThreadPriority.Lowest;
+
+        // start all threads
+        t11.Start();
+        t12.Start();
+        t13.Start();
+        t14.Start();
+        t15.Start();  
+
+        // wait for all threads to complete
+        t11.Join();
+        t12.Join();
+        t13.Join();
+        t14.Join();
+        t15.Join();
+
+        Console.WriteLine("All values printed with different thread priorities!");
     }
 
     static void Main()
     {
         // Measure ThreadingWithoutSyncNumbers (milliseconds)
-            //Creates stopwatch object, runs method, then stops the stop watch)
+        //Creates stopwatch object, runs method, then stops the stop watch)
         var sw1 = Stopwatch.StartNew();
         ThreadingWithoutSyncNumbers();
         sw1.Stop();
@@ -94,13 +132,16 @@ class Program
         Console.WriteLine("--------------------------------------------------");
 
         // Measure ThreadingWithSyncNumbers (milliseconds)
-            //Does the same as above but for the other method
+        //Does the same as above but for the other method
         var sw2 = Stopwatch.StartNew();
         ThreadingWithSyncNumbers();
         sw2.Stop();
         ms = sw2.Elapsed.TotalMilliseconds;
         Console.WriteLine($"ThreadingWithSyncNumbers elapsed: {ms:F3} ms");
         Console.WriteLine("--------------------------------------------------");
+        
+        //Runs the priorities method
+        ThreadingWithPriorities();
 
     }
 }
