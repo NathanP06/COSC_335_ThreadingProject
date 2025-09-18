@@ -31,6 +31,8 @@ class Program
         t4.Join();
 
         Console.WriteLine("Done!");
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine("");
 
         //Running with syncronization/in order (one thread at a time)
         Thread t5 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
