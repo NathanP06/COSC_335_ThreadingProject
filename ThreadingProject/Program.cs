@@ -15,8 +15,8 @@ class Program
     static void Main()
     {
         //Running without syncronization
-        Thread t1 = new Thread(() => PrintingNumbers("Thread #1", 0, 9));
-        Thread t2 = new Thread(() => PrintingNumbers("Thread #2", 10, 19));
+        Thread t1 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
+        Thread t2 = new Thread(() => PrintingNumbers("Thread #2", 11, 20));
 
         t1.Start();
         t2.Start();
@@ -27,8 +27,8 @@ class Program
         Console.WriteLine("Done!");
 
         //Running with syncronization/in order
-        Thread t3 = new Thread(() => PrintingNumbers("Thread #3", 20, 29));
-        Thread t4 = new Thread(() => PrintingNumbers("Thread #4", 30, 39));
+        Thread t3 = new Thread(() => PrintingNumbers("Thread #3", 21, 30));
+        Thread t4 = new Thread(() => PrintingNumbers("Thread #4", 31, 40));
 
         t3.Start();
         t3.Join();
