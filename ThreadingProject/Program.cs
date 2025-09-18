@@ -12,7 +12,7 @@ class Program
         }
     }
 
-    static void ThreadingWithNumbers()
+    static void ThreadingWithoutSyncNumbers()
     {
         //Running without syncronization (All threads start at once) 
         Thread t1 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
@@ -33,7 +33,9 @@ class Program
         Console.WriteLine("Done!");
         Console.WriteLine("--------------------------------------------------");
         Console.WriteLine("");
+    }
 
+    static void ThreadingWithSyncNumbers(){
         //Running with syncronization/in order (one thread at a time)
         Thread t5 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
         Thread t6 = new Thread(() => PrintingNumbers("Thread #2", 11, 20));
@@ -63,6 +65,7 @@ class Program
 
     static void Main()
     {
-        ThreadingWithNumbers();
+        ThreadingWithoutSyncNumbers();
+        ThreadingWithSyncNumbers();
     }
 }
