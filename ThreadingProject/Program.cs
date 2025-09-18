@@ -21,38 +21,46 @@ class Program
         Thread t2 = new Thread(() => PrintingNumbers("Thread #2", 11, 20));
         Thread t3 = new Thread(() => PrintingNumbers("Thread #3", 21, 30));
         Thread t4 = new Thread(() => PrintingNumbers("Thread #4", 31, 40));
+        Thread t5 = new Thread(() => PrintingNumbers("Thread #5", 41, 50));
 
         t1.Start();
         t2.Start();
         t3.Start();
         t4.Start();
+        t5.Start();
 
         t1.Join();
         t2.Join();
         t3.Join();
         t4.Join();
+        t5.Join();
 
         Console.WriteLine("Done!");
     }
 
     static void ThreadingWithSyncNumbers(){
         //Running with syncronization/in order (one thread at a time)
-        Thread t5 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
-        Thread t6 = new Thread(() => PrintingNumbers("Thread #2", 11, 20));
-        Thread t7 = new Thread(() => PrintingNumbers("Thread #3", 21, 30));
-        Thread t8 = new Thread(() => PrintingNumbers("Thread #4", 31, 40));
-
-        t5.Start();
-        t5.Join(); 
+        Thread t6 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
+        Thread t7 = new Thread(() => PrintingNumbers("Thread #2", 11, 20));
+        Thread t8 = new Thread(() => PrintingNumbers("Thread #3", 21, 30));
+        Thread t9 = new Thread(() => PrintingNumbers("Thread #4", 31, 40));
+        Thread t10 = new Thread(() => PrintingNumbers("Thread #5", 41, 50));
 
         t6.Start();
-        t6.Join();
+        t6.Join(); 
 
         t7.Start();
         t7.Join();
 
         t8.Start();
         t8.Join();
+
+        t9.Start();
+        t9.Join();
+
+        t10.Start();
+        t10.Join();
+
 
         Console.WriteLine("Done!");
     }
@@ -79,5 +87,6 @@ class Program
         ms = sw2.Elapsed.TotalMilliseconds;
         Console.WriteLine($"ThreadingWithSyncNumbers elapsed: {ms:F3} ms");
         Console.WriteLine("--------------------------------------------------");
+
     }
 }
