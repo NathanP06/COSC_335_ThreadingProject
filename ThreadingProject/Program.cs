@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Diagnostics;
 
 class Program
 {
@@ -8,13 +9,14 @@ class Program
         for (int i = start; i <= end; i++)
         {
             Console.WriteLine($"{name}: {i}");
-            Thread.Sleep(500);
+            //Creates a pause that helps display threading better
+            Thread.Sleep(50);
         }
     }
 
     static void ThreadingWithoutSyncNumbers()
     {
-        //Running without syncronization (All threads start at once) 
+        //Running without syncronization (All threads run together) 
         Thread t1 = new Thread(() => PrintingNumbers("Thread #1", 1, 10));
         Thread t2 = new Thread(() => PrintingNumbers("Thread #2", 11, 20));
         Thread t3 = new Thread(() => PrintingNumbers("Thread #3", 21, 30));
@@ -31,8 +33,6 @@ class Program
         t4.Join();
 
         Console.WriteLine("Done!");
-        Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine("");
     }
 
     static void ThreadingWithSyncNumbers(){
@@ -55,17 +55,29 @@ class Program
         t8.Join();
 
         Console.WriteLine("Done!");
-
     }
 
-    static void ThreadingWithSentences()
+    static void ThreadingWithPriorities()
     {
         
     }
 
     static void Main()
     {
+        // Measure ThreadingWithoutSyncNumbers (milliseconds)
+        var sw1 = Stopwatch.StartNew();
         ThreadingWithoutSyncNumbers();
+        sw1.Stop();
+        double ms = sw1.Elapsed.TotalMilliseconds;
+        Console.WriteLine($"ThreadingWithoutSyncNumbers elapsed: {ms:F3} ms");
+        Console.WriteLine("--------------------------------------------------");
+
+        // Measure ThreadingWithSyncNumbers (milliseconds)
+        var sw2 = Stopwatch.StartNew();
         ThreadingWithSyncNumbers();
+        sw2.Stop();
+        ms = sw2.Elapsed.TotalMilliseconds;
+        Console.WriteLine($"ThreadingWithSyncNumbers elapsed: {ms:F3} ms");
+        Console.WriteLine("--------------------------------------------------");
     }
 }
