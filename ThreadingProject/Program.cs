@@ -75,44 +75,35 @@ class Program
 
 
     //Method to print threads based off priority
-    static void PrintPriority(string name, int value)
+    static void PrintPriority(string name)
     {
         for (int i = 0; i < 5; i++)
         {
-            Console.WriteLine($"{name}: {value} (iteration {i + 1})");
-            Thread.Sleep(150);
+            Console.WriteLine($"{name}: iteration {i + 1}");
         }
     }
 
     static void ThreadingWithPriorities()
     {
-        // Creating 5 new threads with different values
-        Thread t11 = new Thread(() => PrintPriority("Thread #11", 10));
-        Thread t12 = new Thread(() => PrintPriority("Thread #12", 20));
-        Thread t13 = new Thread(() => PrintPriority("Thread #13", 30));
-        Thread t14 = new Thread(() => PrintPriority("Thread #14", 40));
-        Thread t15 = new Thread(() => PrintPriority("Thread #15", 50));
+        // Creating 3 new threads with different values
+        Thread t11 = new Thread(() => PrintPriority("Thread #11"));
+        Thread t12 = new Thread(() => PrintPriority("Thread #12"));
+        Thread t13 = new Thread(() => PrintPriority("Thread #13"));
 
         // Set different priorities for each thread
         t11.Priority = ThreadPriority.Highest;
-        t12.Priority = ThreadPriority.AboveNormal;
-        t13.Priority = ThreadPriority.Normal;
-        t14.Priority = ThreadPriority.BelowNormal;
-        t15.Priority = ThreadPriority.Lowest;
+        t12.Priority = ThreadPriority.Normal;
+        t13.Priority = ThreadPriority.Lowest;
 
         // start all threads
         t11.Start();
         t12.Start();
         t13.Start();
-        t14.Start();
-        t15.Start();
 
         // wait for all threads to complete
         t11.Join();
         t12.Join();
         t13.Join();
-        t14.Join();
-        t15.Join();
 
         Console.WriteLine("All values printed with different thread priorities!");
     }
