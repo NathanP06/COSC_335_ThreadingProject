@@ -73,17 +73,20 @@ class Program
         Console.WriteLine("Done!");
     }
 
+
+    //Method to print threads based off priority
+    static void PrintPriority(string name, int value)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine($"{name}: {value} (iteration {i + 1})");
+            Thread.Sleep(150);
+        }
+    }
+
     static void ThreadingWithPriorities()
     {
-        // Takes a name and sentence, and prints it 5 times to show how thread priority affects the output
-        void PrintPriority(string name, int value)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine($"{name}: {value} (iteration {i + 1})");
-                Thread.Sleep(150); 
-            }
-        }
+
 
         // Creating 5 new threads with different values
         Thread t11 = new Thread(() => PrintPriority("Thread #11", 10));
@@ -104,7 +107,7 @@ class Program
         t12.Start();
         t13.Start();
         t14.Start();
-        t15.Start();  
+        t15.Start();
 
         // wait for all threads to complete
         t11.Join();
