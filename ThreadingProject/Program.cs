@@ -75,32 +75,38 @@ class Program
 
 
     //Method to print threads based off priority
-    static void PrintPriority(string name)
+    static void PrintPriority(string name, int seconds)
     {
-        for (int i = 0; i < 5; i++)
+        long counter = 0;
+        DateTime end = DateTime.Now.AddSeconds(seconds);
+
+        // Busy loop until the time expires
+        while (DateTime.Now < end)
         {
-            Console.WriteLine($"{name}: iteration {i + 1}");
+            counter++;
         }
+
+        Console.WriteLine($"{name} with priority {Thread.CurrentThread.Priority} finished with {counter:N0} iterations.");
     }
 
     static void ThreadingWithPriorities()
     {
         // Creating 3 new threads with different values
-        Thread t11 = new Thread(() => PrintPriority("Thread #11"));
-        Thread t12 = new Thread(() => PrintPriority("Thread #12"));
-        Thread t13 = new Thread(() => PrintPriority("Thread #13"));
+        Thread t11 = new Thread(() => PrintPriority("Thread #11", 5));
+        Thread t12 = new Thread(() => PrintPriority("Thread #12", 5));
+        Thread t13 = new Thread(() => PrintPriority("Thread #13", 5));
 
         // Set different priorities for each thread
         t11.Priority = ThreadPriority.Highest;
         t12.Priority = ThreadPriority.Normal;
         t13.Priority = ThreadPriority.Lowest;
 
-        // start all threads
+        // Start threads
         t11.Start();
         t12.Start();
         t13.Start();
 
-        // wait for all threads to complete
+        // Wait for all threads to complete
         t11.Join();
         t12.Join();
         t13.Join();
