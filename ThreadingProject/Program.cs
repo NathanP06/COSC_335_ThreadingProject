@@ -86,8 +86,6 @@ class Program
 
     static void ThreadingWithPriorities()
     {
-
-
         // Creating 5 new threads with different values
         Thread t11 = new Thread(() => PrintPriority("Thread #11", 10));
         Thread t12 = new Thread(() => PrintPriority("Thread #12", 20));
@@ -145,6 +143,5 @@ class Program
         
         //Runs the priorities method
         ThreadingWithPriorities();
-
     }
 }
