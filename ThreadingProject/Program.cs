@@ -162,6 +162,7 @@ class Program
 
         //Runs the priorities method
         ThreadingWithoutPriorities();
+        Console.WriteLine("--------------------------------------------------");
         ThreadingWithPriorities();
     }
 }
