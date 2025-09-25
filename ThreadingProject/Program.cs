@@ -91,18 +91,12 @@ class Program
         //Prints the name, priority, and number of iterations completed by the thread
         Console.WriteLine($"{name} with priority {Thread.CurrentThread.Priority} finished with {counter:N0} iterations.");
     }
-
-    static void ThreadingWithPriorities()
+        static void ThreadingWithoutPriorities()
     {
         // Creating 3 new threads with different values
         Thread t11 = new Thread(() => PrintPriority("Thread #11", 5));
         Thread t12 = new Thread(() => PrintPriority("Thread #12", 5));
         Thread t13 = new Thread(() => PrintPriority("Thread #13", 5));
-
-        // Set different priorities for each thread
-        t11.Priority = ThreadPriority.Highest;
-        t12.Priority = ThreadPriority.Normal;
-        t13.Priority = ThreadPriority.Lowest;
 
         // Start threads
         t11.Start();
@@ -113,6 +107,31 @@ class Program
         t11.Join();
         t12.Join();
         t13.Join();
+
+        Console.WriteLine("All values printed with the same priorities!");
+    }
+
+    static void ThreadingWithPriorities()
+    {
+        // Creating 3 new threads with different values
+        Thread t14 = new Thread(() => PrintPriority("Thread #11", 5));
+        Thread t15 = new Thread(() => PrintPriority("Thread #12", 5));
+        Thread t16 = new Thread(() => PrintPriority("Thread #13", 5));
+
+        // Set different priorities for each thread
+        t14.Priority = ThreadPriority.Highest;
+        t15.Priority = ThreadPriority.Normal;
+        t16.Priority = ThreadPriority.Lowest;
+
+        // Start threads
+        t14.Start();
+        t15.Start();
+        t16.Start();
+
+        // Wait for all threads to complete
+        t14.Join();
+        t15.Join();
+        t16.Join();
 
         Console.WriteLine("All values printed with different thread priorities!");
     }
@@ -140,8 +159,9 @@ class Program
         ms = sw2.Elapsed.TotalMilliseconds;
         Console.WriteLine($"ThreadingWithSyncNumbers elapsed: {ms:F3} ms");
         Console.WriteLine("--------------------------------------------------");
-        
+
         //Runs the priorities method
+        ThreadingWithoutPriorities();
         ThreadingWithPriorities();
     }
 }
