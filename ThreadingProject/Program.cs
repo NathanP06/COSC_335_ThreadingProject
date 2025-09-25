@@ -78,6 +78,8 @@ class Program
     static void PrintPriority(string name, int seconds)
     {
         long counter = 0;
+
+        //Creates a variable that stores a DateTime value of the current time plus the number of seconds passed in
         DateTime end = DateTime.Now.AddSeconds(seconds);
 
         // Busy loop until the time expires
@@ -86,6 +88,7 @@ class Program
             counter++;
         }
 
+        //Prints the name, priority, and number of iterations completed by the thread
         Console.WriteLine($"{name} with priority {Thread.CurrentThread.Priority} finished with {counter:N0} iterations.");
     }
 
