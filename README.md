@@ -6,7 +6,8 @@ Overview
 - The project contains three primary demonstrations:
   - `ThreadingWithoutSyncNumbers` — creates five threads that run concurrently; each thread prints a sequence of numbers and uses `Thread.Sleep(50)` to make output readable.
   - `ThreadingWithSyncNumbers` — runs the same five tasks but starts each thread and immediately `Join()`s it, so the tasks execute one at a time (synchronous behavior).
-  - `ThreadingWithPriorities` — creates three threads and assigns different priorities (`Highest`, `Normal`, `Lowest`). Each thread busy-loops for 5 seconds, incrementing a counter; the final counts indicate how much work each thread completed.
+  - `ThreadingWithoutPriorities` — creates three threats and does not assign them priorities (lets the system apply priorities) and busy-loops for 5 seconds, incrementing a counter; the final counts indicate how much work each thread completed.
+  - `ThreadingWithPriorities` — runs the same three tasks but assigns different priorities (`Highest`, `Normal`, `Lowest`). Shows a comparison between prioritized threading vs unprioritized threading
 
 Notes on timing and priorities
 - `Main` measures and prints the elapsed time for `ThreadingWithoutSyncNumbers` and `ThreadingWithSyncNumbers` using `Stopwatch` to illustrate the performance difference.
