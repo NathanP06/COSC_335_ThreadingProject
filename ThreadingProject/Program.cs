@@ -114,9 +114,9 @@ class Program
     static void ThreadingWithPriorities()
     {
         // Creating 3 new threads with different values
-        Thread t14 = new Thread(() => PrintPriority("Thread #11", 5));
-        Thread t15 = new Thread(() => PrintPriority("Thread #12", 5));
-        Thread t16 = new Thread(() => PrintPriority("Thread #13", 5));
+        Thread t14 = new Thread(() => PrintPriority("Thread #14", 5));
+        Thread t15 = new Thread(() => PrintPriority("Thread #15", 5));
+        Thread t16 = new Thread(() => PrintPriority("Thread #16", 5));
 
         // Set different priorities for each thread
         t14.Priority = ThreadPriority.Highest;
