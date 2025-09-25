@@ -11,4 +11,4 @@ ThreadingWithSyncNumbers is a program that demonstrates the opposite. It runs th
 
 ThreadingWithPriorities is a completely different set of instructions, that has no relation to the above two. This method has three threads in it, with each thread being labeled a priority: high, normal, or low. It uses a While loop and the date & time of the computer to run the thread counter for 5 seconds, incrementing the counter as many times as it can which essentially demonstrates how long each of these processes spent within the processor. This allows for the user to effectively see how priorities are working within the Threading example.
 
-
+In the main method, there are two stopwatch objects that time how long each method (ThreadingWithSyncNumbers and ThreadingWithoutSyncNumbers) take, which is what demonstrates the different in speed the two programs run.
