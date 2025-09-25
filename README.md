@@ -1,14 +1,17 @@
 # COSC_335_ThreadingProject
-A project for COSC 335 (Operating Systems) in C# focusing on the use Threading.
 
-This project is aimed at demonstrating an understanding of developing using Threading techniques.
+A C# project for COSC 335 (Operating Systems) demonstrating basic threading techniques.
 
-It contains three primary methods: ThreadingWithoutSyncNumbers, ThreadingWithSyncNumbers, and ThreadingWithPriorities.
+Overview
+- The project contains three primary demonstrations:
+  - `ThreadingWithoutSyncNumbers` — creates five threads that run concurrently; each thread prints a sequence of numbers and uses `Thread.Sleep(50)` to make output readable.
+  - `ThreadingWithSyncNumbers` — runs the same five tasks but starts each thread and immediately `Join()`s it, so the tasks execute one at a time (synchronous behavior).
+  - `ThreadingWithPriorities` — creates three threads and assigns different priorities (`Highest`, `Normal`, `Lowest`). Each thread busy-loops for 5 seconds, incrementing a counter; the final counts indicate how much work each thread completed.
 
-ThreadingWithoutSyncNumbers is a program that shows the efficency of splitting up numerous actions into different threads, allowing for the CPU (Core Processing Unit) to more effectively run multiple processes/threads simoultaniously. This method starts all 5 threads at relatively the same time, to demonstrate the threads running whenever the processor will allow them to, without worry for the other threads.
+Notes on timing and priorities
+- `Main` measures and prints the elapsed time for `ThreadingWithoutSyncNumbers` and `ThreadingWithSyncNumbers` using `Stopwatch` to illustrate the performance difference.
+- Thread priorities are scheduler hints and platform-dependent. To observe priority effects, the priority threads should be started concurrently (call `Start()` on all threads first, then `Join()` them) so the OS scheduler can interleave them. If you start a thread and immediately `Join()` it (run sequentially), you won't see scheduling arbitration between threads.
 
-ThreadingWithSyncNumbers is a program that demonstrates the opposite. It runs the threads in sync, showing that running one thread at a time creates a process that runs slower, in this instance, the ".Start()" method call, starts the thread and ".Join()" waits for the individual thread to finish completely running before it rejoins the main method call.
-
-ThreadingWithPriorities is a completely different set of instructions, that has no relation to the above two. This method has three threads in it, with each thread being labeled a priority: high, normal, or low. It uses a While loop and the date & time of the computer to run the thread counter for 5 seconds, incrementing the counter as many times as it can which essentially demonstrates how long each of these processes spent within the processor. This allows for the user to effectively see how priorities are working within the Threading example.
-
-In the main method, there are two stopwatch objects that time how long each method (ThreadingWithSyncNumbers and ThreadingWithoutSyncNumbers) take, which is what demonstrates the different in speed the two programs run.
+Implementation details
+- `PrintingNumbers(string name, int start, int end)` prints the named sequence for each thread.
+- `PrintPriority(string name, int seconds)` busy-loops for `seconds` and prints the thread's priority and its counter when finished.
