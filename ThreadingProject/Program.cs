@@ -91,7 +91,8 @@ class Program
         //Prints the name, priority, and number of iterations completed by the thread
         Console.WriteLine($"{name} with priority {Thread.CurrentThread.Priority} finished with {counter:N0} iterations.");
     }
-        static void WithoutPriorities()
+    
+    static void WithoutPriorities()
     {
         // Creating 3 new threads with different values
         Thread t11 = new Thread(() => PrintPriority("Thread #11", 5));
@@ -156,7 +157,9 @@ class Program
         var sw2 = Stopwatch.StartNew();
         WithSync();
         sw2.Stop();
+
         ms = sw2.Elapsed.TotalMilliseconds;
+        
         Console.WriteLine($"WithSync elapsed: {ms:F3} ms");
         Console.WriteLine("--------------------------------------------------");
 
