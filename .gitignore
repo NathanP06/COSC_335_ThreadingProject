@@ -8,6 +8,7 @@
 !README.md
 
 # Keep the project folder and the specific C# file(s).
+!ThreadingProject/
 !ThreadingProject/Program.cs
 
 # End
